@@ -1,0 +1,22 @@
+{
+  "name": "agentpostage",
+  "version": "0.1.0",
+  "description": "Send PDFs as physical US mail with AgentPostage.",
+  "author": {
+    "name": "AgentPostage"
+  },
+  "homepage": "https://agentpostage.com/docs/",
+  "repository": "https://github.com/ctxrs/agentpostage",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AgentPostage",
+    "shortDescription": "Mail a PDF to a US address.",
+    "longDescription": "A mailing skill and standalone CLI for sending PDFs, checking prices and following letter status. Requires an AgentPostage key and prepaid funds for mailing.",
+    "developerName": "AgentPostage",
+    "category": "Productivity",
+    "capabilities": [],
+    "websiteURL": "https://agentpostage.com",
+    "defaultPrompt": "Mail my PDF with AgentPostage using the addresses I provided and report its status."
+  }
+}
