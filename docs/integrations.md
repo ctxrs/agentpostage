@@ -4,6 +4,16 @@ Create a verified account and API key at [Connect](https://agentpostage.com/conn
 
 First ask the agent to check your balance. That verifies authenticated access without sending a letter. There is no separate agent dashboard.
 
+## Portable skill
+
+The [skills CLI](https://skills.sh/docs) can discover and install the skill directly from this repository:
+
+```sh
+npx skills add ctxrs/agentpostage --skill agentpostage
+```
+
+Choose the intended agent and scope. Keep the whole skill folder, including `scripts/agentpostage.mjs`. The CLI requires Node.js 22+. For runtimes without a shell, use an authenticated HTTP or MCP tool instead.
+
 ## Codex
 
 ### Remote MCP
@@ -50,6 +60,19 @@ cp -R plugins/agentpostage/skills/agentpostage "$target_project/.agents/skills/"
 Choose a destination without an existing `agentpostage` skill. This folder contains its own CLI and needs no files outside it. Invoke `$agentpostage` in a new Codex task. The plugin is a local Codex package, not a published directory listing or a ChatGPT plugin. See [OpenAI's plugin scaffold documentation](https://developers.openai.com/plugins/build/plugins#plugin-creator-output).
 
 ## Claude Code
+
+### Skill plugin
+
+In Claude Code, add the AgentPostage marketplace and install its plugin:
+
+```text
+/plugin marketplace add ctxrs/agentpostage
+/plugin install agentpostage@agentpostage
+```
+
+Follow Claude Code's reload or restart prompt, then invoke `/agentpostage:agentpostage`. The plugin bundles the same portable skill and standalone CLI. It needs `AGENTPOSTAGE_API_KEY` in the shell environment and Node.js 22+, or an existing authenticated MCP connection. It does not store a key, configure MCP or send mail during installation.
+
+### Remote MCP
 
 Merge this entry into the project's `.mcp.json`, preserving any existing servers:
 

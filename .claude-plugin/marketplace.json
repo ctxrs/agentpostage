@@ -1,0 +1,17 @@
+{
+  "name": "agentpostage",
+  "metadata": {
+    "description": "Mail PDFs to US addresses from Claude Code with AgentPostage."
+  },
+  "owner": {
+    "name": "AgentPostage",
+    "email": "support@agentpostage.com"
+  },
+  "plugins": [
+    {
+      "name": "agentpostage",
+      "source": "./plugins/agentpostage",
+      "description": "Send PDFs as physical US mail from your agent."
+    }
+  ]
+}
