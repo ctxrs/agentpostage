@@ -1,9 +1,10 @@
 {
   "name": "agentpostage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Send PDFs as physical US mail with AgentPostage.",
   "author": {
-    "name": "AgentPostage"
+    "name": "AgentPostage",
+    "email": "support@agentpostage.com"
   },
   "homepage": "https://agentpostage.com/docs/",
   "repository": "https://github.com/ctxrs/agentpostage",
@@ -17,6 +18,12 @@
     "category": "Productivity",
     "capabilities": [],
     "websiteURL": "https://agentpostage.com",
-    "defaultPrompt": "Mail my PDF with AgentPostage using the addresses I provided and report its status."
+    "privacyPolicyURL": "https://agentpostage.com/privacy/",
+    "termsOfServiceURL": "https://agentpostage.com/terms/",
+    "defaultPrompt": [
+      "Check the price to mail my PDF with AgentPostage.",
+      "Mail my PDF using the addresses I provided.",
+      "Check the status of my AgentPostage letters."
+    ]
   }
 }

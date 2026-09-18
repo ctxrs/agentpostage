@@ -4,13 +4,21 @@ Your agent can write the letter. Now it can mail it.
 
 [AgentPostage](https://agentpostage.com/docs/) turns a PDF, a US return address and a US recipient address into physical mail. Send bank disputes, gym cancellations, credit bureau requests, notices and completed forms from your agent. Printing, an envelope, an address coversheet and US postage are included.
 
-This repository contains a portable mailing skill, a Codex plugin and a standalone Node.js CLI. Connect through MCP or the HTTP API, or use a private GPT Action in ChatGPT.
+This repository contains a portable mailing skill, Claude Code and Codex plugins, and a standalone Node.js CLI. Connect through MCP or the HTTP API, or use a private GPT Action in ChatGPT.
 
 ## Start here
 
 1. Create and verify your account at [Connect](https://agentpostage.com/connect/), accept the service policies and create a named API key.
 2. Add prepaid funds at [Billing](https://agentpostage.com/billing/). The minimum payment is $10. There is no subscription.
 3. Put the key in your agent's secret store as `AGENTPOSTAGE_API_KEY`, then follow your [agent setup](docs/integrations.md). Never paste it into a conversation.
+
+Install the skill for a supported agent with the [skills CLI](https://skills.sh/docs):
+
+```sh
+npx skills add ctxrs/agentpostage --skill agentpostage
+```
+
+Choose the agent and installation scope when prompted. The skill includes its CLI, with no package dependencies. Installing it does not send mail or fund an account.
 
 For any agent with shell access and Node.js 22+, the CLI needs no package installation:
 
@@ -35,7 +43,8 @@ Your agent acts within the authority and limits you have already delegated. Agen
 | --- | --- |
 | OpenClaw, Hermes Agent | Install the skill with shell access, or use their remote MCP configuration |
 | Codex | Install the repo-local skill plugin, or configure HTTP MCP with a Bearer environment variable |
-| Claude Code, Cursor | Remote HTTP MCP with an Authorization header |
+| Claude Code | Install the skill plugin, or connect through remote HTTP MCP |
+| Cursor | Install the portable skill, or connect through remote HTTP MCP |
 | ChatGPT | Private custom GPT with Actions and API-key authentication |
 | Muse, Grok bots, other tool-capable runtimes | CLI, HTTP or remote MCP where the runtime exposes those capabilities |
 

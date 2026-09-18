@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ctxrs/agentpostage",
+  "title": "AgentPostage",
+  "description": "Physical US mail for agents. Send PDFs, check prices and track letters. Prepaid account required.",
+  "version": "0.2.0",
+  "websiteUrl": "https://agentpostage.com",
+  "repository": {
+    "url": "https://github.com/ctxrs/agentpostage",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agentpostage.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "isRequired": true,
+          "isSecret": true,
+          "description": "Bearer followed by your AgentPostage API key from https://agentpostage.com/connect/",
+          "value": "Bearer {AGENTPOSTAGE_API_KEY}",
+          "variables": {
+            "AGENTPOSTAGE_API_KEY": {
+              "description": "Your AgentPostage API key. Mailing spends prepaid funds and may trigger owner-enabled recharge.",
+              "isRequired": true,
+              "isSecret": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

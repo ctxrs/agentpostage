@@ -1,6 +1,20 @@
 ---
 name: agentpostage
 description: Send PDFs as physical US mail with AgentPostage and check prices, letter status, balance, tracking or return receipts. Use for mailing bank disputes, gym cancellations, credit bureau requests, notices and completed forms.
+metadata:
+  openclaw:
+    homepage: https://agentpostage.com
+    primaryEnv: AGENTPOSTAGE_API_KEY
+    requires:
+      env:
+        - AGENTPOSTAGE_API_KEY
+    envVars:
+      - name: AGENTPOSTAGE_API_KEY
+        required: true
+        description: AgentPostage API key. Sending spends prepaid funds and may trigger owner-enabled automatic recharge.
+      - name: AGENTPOSTAGE_BASE_URL
+        required: false
+        description: Optional CLI API origin override for explicitly authorized local integration tests. Normally leave unset.
 ---
 
 # AgentPostage
@@ -12,6 +26,8 @@ Use the user's actual document and addresses. Do not impersonate someone, invent
 ## Connect
 
 Prefer AgentPostage MCP tools when connected. Otherwise use the bundled `scripts/agentpostage.mjs` with Node.js 22+ or the HTTP API. Resolve script paths relative to this skill's directory, not the current working directory. The CLI has no package dependencies.
+
+The CLI sends authenticated requests to `https://agentpostage.com`. Leave `AGENTPOSTAGE_BASE_URL` unset during normal use. Do not redirect the key or documents to another origin without the owner's explicit authorization.
 
 The human owner creates a verified account, accepts the policies and creates a key at https://agentpostage.com/connect/. Funding happens at https://agentpostage.com/billing/. The agent needs `AGENTPOSTAGE_API_KEY` in its tool environment, supplied through the runtime's secret store. Never ask for the key in chat, print it, or obtain owner cookies or card details. If absent, ask the human to configure it.
 
