@@ -1,6 +1,6 @@
 {
   "name": "agentpostage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Send PDFs as physical US mail, check prices and follow letter status. Requires an AgentPostage API key and prepaid funds for mailing.",
   "author": {
     "name": "AgentPostage",

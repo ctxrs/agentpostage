@@ -15,10 +15,10 @@ This repository contains a portable mailing skill, Claude Code, Codex and Cursor
 Install the skill for a supported agent with the [skills CLI](https://skills.sh/docs):
 
 ```sh
-npx skills add ctxrs/agentpostage --skill agentpostage
+npx skills add ctxrs/agentpostage --skill postage
 ```
 
-Choose the agent and installation scope when prompted. The skill includes its CLI, with no package dependencies. Installing it does not send mail or fund an account.
+Choose the agent and installation scope when prompted. The skill is named `postage`. Use `/postage` in clients with skill slash commands, or `$postage` in Codex. The skill includes its CLI, with no package dependencies. Installing it does not send mail or fund an account.
 
 For any agent with shell access and Node.js 22+, the CLI needs no package installation:
 
@@ -29,7 +29,7 @@ node agentpostage.mjs balance
 node agentpostage.mjs price --pages 3 --service first_class
 ```
 
-Review downloaded code before running it. Balance and price checks do not send mail. The [CLI source](plugins/agentpostage/skills/agentpostage/scripts/agentpostage.mjs) is also included in this repository.
+Review downloaded code before running it. Balance and price checks do not send mail. The [CLI source](plugins/agentpostage/skills/postage/scripts/agentpostage.mjs) is also included in this repository.
 
 > Mail my gym cancellation PDF to [recipient address] using AgentPostage First-Class, with [my return address]. Record the letter ID and cost, then check its mailing status.
 
@@ -79,7 +79,7 @@ The service accepts PDFs and US addresses. It does not draft documents, guarante
 
 - [API, CLI, file limits and retry handling](docs/api.md)
 - [Agent setup and Codex plugin installation](docs/integrations.md)
-- [Mailing skill](plugins/agentpostage/skills/agentpostage/SKILL.md)
+- [Mailing skill](plugins/agentpostage/skills/postage/SKILL.md)
 - [Live API docs](https://agentpostage.com/docs/), [OpenAPI](https://agentpostage.com/openapi.json) and [agent reference](https://agentpostage.com/llms.txt)
 
 Run the offline checks with Node.js 22+:

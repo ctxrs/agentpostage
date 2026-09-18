@@ -1,12 +1,21 @@
 import assert from 'node:assert/strict'
-import { readFile, stat } from 'node:fs/promises'
+import { readFile, readdir, stat } from 'node:fs/promises'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 const json = async path => JSON.parse(await readFile(resolve(root, path), 'utf8'))
-const skill = resolve(root, 'plugins/agentpostage/skills/agentpostage/SKILL.md')
+const skill = resolve(root, 'plugins/agentpostage/skills/postage/SKILL.md')
+
+test('all plugins discover only the postage skill with matching folder and frontmatter', async () => {
+  const pluginRoot = resolve(root, 'plugins/agentpostage')
+  for (const client of ['codex', 'claude', 'cursor']) {
+    const plugin = await json(resolve(pluginRoot, `.${client}-plugin/plugin.json`))
+    assert.deepEqual(await readdir(resolve(pluginRoot, plugin.skills)), ['postage'])
+  }
+  assert.match(await readFile(skill, 'utf8'), /^---\nname: postage\n/)
+})
 
 test('Cursor marketplace discovers the canonical skill and its bundled CLI', async () => {
   const marketplace = await json('.cursor-plugin/marketplace.json')
@@ -15,7 +24,7 @@ test('Cursor marketplace discovers the canonical skill and its bundled CLI', asy
   const pluginRoot = resolve(root, entry.source)
   const plugin = await json(resolve(pluginRoot, '.cursor-plugin/plugin.json'))
   assert.equal(plugin.name, entry.name)
-  assert.equal(resolve(pluginRoot, plugin.skills, plugin.name, 'SKILL.md'), skill)
+  assert.equal(resolve(pluginRoot, plugin.skills, 'postage', 'SKILL.md'), skill)
   assert.ok((await stat(skill)).isFile())
   assert.ok((await stat(resolve(dirname(skill), 'scripts/agentpostage.mjs'))).isFile())
 })
