@@ -7,7 +7,7 @@ Base URL: `https://agentpostage.com`. Send `Authorization: Bearer $AGENTPOSTAGE_
 Requires Node.js 22+, with no npm dependencies. Download the [published CLI](https://agentpostage.com/agentpostage.mjs), or run the copy in this checkout:
 
 ```sh
-node plugins/agentpostage/skills/agentpostage/scripts/agentpostage.mjs --help
+node plugins/agentpostage/skills/postage/scripts/agentpostage.mjs --help
 ```
 
 The commands below assume you downloaded it as `agentpostage.mjs` in your working directory. Inject the key into the process environment through your normal secret store.

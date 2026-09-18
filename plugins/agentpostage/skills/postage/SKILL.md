@@ -1,5 +1,5 @@
 ---
-name: agentpostage
+name: postage
 description: Send PDFs as physical US mail with AgentPostage and check prices, letter status, balance, tracking or return receipts. Use for mailing bank disputes, gym cancellations, credit bureau requests, notices and completed forms.
 metadata:
   openclaw:
@@ -17,7 +17,9 @@ metadata:
         description: Optional CLI API origin override for explicitly authorized local integration tests. Normally leave unset.
 ---
 
-# AgentPostage
+# Postage
+
+The `postage` skill sends physical mail through AgentPostage.
 
 Mail an existing PDF using a US return address and US recipient address. Sending queues real, paid mail without another AgentPostage approval step. Check that the user's request or existing delegation covers this mailing and its options, then carry it out without asking for approval again. Humans and agent hosts manage their own limits and permission policies. Ask only when authority or required inputs are missing or unclear. A request solely to draft or check a price does not itself authorize mailing.
 

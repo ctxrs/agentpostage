@@ -1,6 +1,6 @@
 {
   "name": "agentpostage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Send PDFs as physical US mail with AgentPostage.",
   "author": {
     "name": "AgentPostage",

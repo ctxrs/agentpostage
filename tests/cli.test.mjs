@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const cli = fileURLToPath(new URL('../plugins/agentpostage/skills/agentpostage/scripts/agentpostage.mjs', import.meta.url));
+const cli = fileURLToPath(new URL('../plugins/agentpostage/skills/postage/scripts/agentpostage.mjs', import.meta.url));
 const key = 'synthetic-test-key-not-a-credential';
 const letterId = '00000000-0000-4000-8000-000000000001';
 

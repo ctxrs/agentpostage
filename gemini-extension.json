@@ -1,8 +1,8 @@
 {
   "name": "agentpostage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Send PDFs as physical US mail and check prices, status and receipts.",
-  "contextFileName": "plugins/agentpostage/skills/agentpostage/SKILL.md",
+  "contextFileName": "plugins/agentpostage/skills/postage/SKILL.md",
   "settings": [
     {
       "name": "AgentPostage API key",

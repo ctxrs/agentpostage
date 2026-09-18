@@ -2,7 +2,7 @@
   "name": "agentpostage",
   "displayName": "AgentPostage",
   "description": "Send PDFs as physical US mail and check prices, status and receipts.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "AgentPostage",
     "email": "support@agentpostage.com"
