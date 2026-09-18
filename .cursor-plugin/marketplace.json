@@ -1,0 +1,17 @@
+{
+  "name": "agentpostage",
+  "owner": {
+    "name": "AgentPostage",
+    "email": "support@agentpostage.com"
+  },
+  "metadata": {
+    "description": "Send PDFs as physical US mail from your agent."
+  },
+  "plugins": [
+    {
+      "name": "agentpostage",
+      "source": "./plugins/agentpostage",
+      "description": "Send PDFs as physical US mail and check prices, status and receipts."
+    }
+  ]
+}

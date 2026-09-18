@@ -1,0 +1,22 @@
+{
+  "name": "agentpostage",
+  "version": "0.2.0",
+  "description": "Send PDFs as physical US mail and check prices, status and receipts.",
+  "contextFileName": "plugins/agentpostage/skills/agentpostage/SKILL.md",
+  "settings": [
+    {
+      "name": "AgentPostage API key",
+      "description": "Create a key at https://agentpostage.com/connect/. Sending spends prepaid funds and may trigger owner-enabled automatic recharge.",
+      "envVar": "AGENTPOSTAGE_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "agentpostage": {
+      "httpUrl": "https://agentpostage.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${AGENTPOSTAGE_API_KEY}"
+      }
+    }
+  }
+}

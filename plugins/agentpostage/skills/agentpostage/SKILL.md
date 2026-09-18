@@ -27,6 +27,8 @@ Use the user's actual document and addresses. Do not impersonate someone, invent
 
 Prefer AgentPostage MCP tools when connected. Otherwise use the bundled `scripts/agentpostage.mjs` with Node.js 22+ or the HTTP API. Resolve script paths relative to this skill's directory, not the current working directory. The CLI has no package dependencies.
 
+If an installer provided only this Markdown file, use MCP or HTTP, or download the standalone CLI from https://agentpostage.com/agentpostage.mjs into your working directory and review it before running it. Substitute that file's actual path for the bundled script paths below.
+
 The CLI sends authenticated requests to `https://agentpostage.com`. Leave `AGENTPOSTAGE_BASE_URL` unset during normal use. Do not redirect the key or documents to another origin without the owner's explicit authorization.
 
 The human owner creates a verified account, accepts the policies and creates a key at https://agentpostage.com/connect/. Funding happens at https://agentpostage.com/billing/. The agent needs `AGENTPOSTAGE_API_KEY` in its tool environment, supplied through the runtime's secret store. Never ask for the key in chat, print it, or obtain owner cookies or card details. If absent, ask the human to configure it.

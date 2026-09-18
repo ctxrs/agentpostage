@@ -4,7 +4,7 @@ Your agent can write the letter. Now it can mail it.
 
 [AgentPostage](https://agentpostage.com/docs/) turns a PDF, a US return address and a US recipient address into physical mail. Send bank disputes, gym cancellations, credit bureau requests, notices and completed forms from your agent. Printing, an envelope, an address coversheet and US postage are included.
 
-This repository contains a portable mailing skill, Claude Code and Codex plugins, and a standalone Node.js CLI. Connect through MCP or the HTTP API, or use a private GPT Action in ChatGPT.
+This repository contains a portable mailing skill, Claude Code, Codex and Cursor plugins, a Gemini CLI extension, and a standalone Node.js CLI. Connect through MCP or the HTTP API, or use a private GPT Action in ChatGPT.
 
 ## Start here
 
@@ -44,7 +44,8 @@ Your agent acts within the authority and limits you have already delegated. Agen
 | OpenClaw, Hermes Agent | Install the skill with shell access, or use their remote MCP configuration |
 | Codex | Install the repo-local skill plugin, or configure HTTP MCP with a Bearer environment variable |
 | Claude Code | Install the skill plugin, or connect through remote HTTP MCP |
-| Cursor | Install the portable skill, or connect through remote HTTP MCP |
+| Cursor | Import the repository as a plugin, install the portable skill, or connect through remote HTTP MCP |
+| Gemini CLI | Install the extension for remote MCP and the shared mailing instructions |
 | ChatGPT | Private custom GPT with Actions and API-key authentication |
 | Muse, Grok bots, other tool-capable runtimes | CLI, HTTP or remote MCP where the runtime exposes those capabilities |
 

@@ -1,0 +1,16 @@
+{
+  "name": "agentpostage",
+  "displayName": "AgentPostage",
+  "description": "Send PDFs as physical US mail and check prices, status and receipts.",
+  "version": "0.2.0",
+  "author": {
+    "name": "AgentPostage",
+    "email": "support@agentpostage.com"
+  },
+  "homepage": "https://agentpostage.com",
+  "repository": "https://github.com/ctxrs/agentpostage",
+  "license": "MIT",
+  "category": "Productivity",
+  "keywords": ["physical-mail", "pdf", "postage", "personal-assistant"],
+  "skills": "./skills/"
+}
