@@ -102,6 +102,14 @@ Keep the single quotes to save the variable reference. Start a new session, appr
 
 ## Cursor
 
+### Skill plugin
+
+In Cursor's Customize view, import `https://github.com/ctxrs/agentpostage` as a plugin repository and select AgentPostage. The repository's `.cursor-plugin/marketplace.json` points to the same skill and CLI used by the other clients. This is a direct repository install, not a claim of acceptance in Cursor's public marketplace.
+
+The skill needs Node.js 22+ and `AGENTPOSTAGE_API_KEY` in the agent's shell, or an existing authenticated MCP connection. It does not configure MCP or send mail during installation. See [Cursor's plugin documentation](https://cursor.com/docs/plugins).
+
+### Remote MCP
+
 Merge this into `.cursor/mcp.json` for one project or `~/.cursor/mcp.json` for all projects:
 
 ```json
@@ -118,6 +126,18 @@ Merge this into `.cursor/mcp.json` for one project or `~/.cursor/mcp.json` for a
 ```
 
 Launch Cursor with the key in its process environment and enable the server. Remote HTTP servers do not load `envFile`. See [Cursor's MCP configuration](https://cursor.com/docs/context/mcp).
+
+## Gemini CLI
+
+Install the extension from this public repository:
+
+```sh
+gemini extensions install https://github.com/ctxrs/agentpostage
+```
+
+Review the installation prompt and supply the AgentPostage API key through Gemini CLI's sensitive-setting prompt, not in chat. The extension connects the remote MCP endpoint and loads this repository's shared mailing instructions. It does not add dependencies, send mail or fund an account during installation.
+
+Restart Gemini CLI and use `/mcp` to check the connection. Ask for your balance before sending a letter. Gemini CLI's own tool permissions still apply. See the [official extension reference](https://geminicli.com/docs/extensions/reference/).
 
 ## OpenClaw and Hermes Agent
 
