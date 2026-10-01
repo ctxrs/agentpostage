@@ -36,11 +36,11 @@ url = "https://agentpostage.com/mcp"
 bearer_token_env_var = "AGENTPOSTAGE_API_KEY"
 ```
 
-Start a new session and check `/mcp`. This saves the variable name, not the secret. AgentPostage uses a Bearer API key, not OAuth. Do not use `codex mcp login` for this connection. See [official Codex MCP configuration](https://developers.openai.com/codex/mcp).
+Start a new session and check `/mcp`. This API-key configuration saves the variable name, not the secret; it does not use `codex mcp login`. AgentPostage also supports OAuth for native plugin connections. See [official Codex MCP configuration](https://developers.openai.com/codex/mcp).
 
-### Skill plugin from this checkout
+### Plugin from this checkout
 
-The plugin bundles one skill and its CLI. It can use an existing AgentPostage MCP connection or the bundled CLI with Node.js 22+. It does not configure MCP authentication for you.
+The portable plugin bundles the `postage` skill, its CLI and the hosted AgentPostage MCP endpoint. Connect the MCP server with the client's OAuth sign-in flow. The CLI remains available with Node.js 22+ and an API key.
 
 From the root of this checkout, with a Codex version that offers `codex plugin`:
 
@@ -59,7 +59,7 @@ mkdir -p "$target_project/.agents/skills"
 cp -R plugins/agentpostage/skills/postage "$target_project/.agents/skills/"
 ```
 
-Choose a destination without an existing `postage` skill. This folder contains its own CLI and needs no files outside it. Invoke `$postage` in a new Codex task. The plugin is a local Codex package, not a published directory listing or a ChatGPT plugin. See [OpenAI's plugin scaffold documentation](https://developers.openai.com/plugins/build/plugins#plugin-creator-output).
+Choose a destination without an existing `postage` skill. This folder contains its own CLI and needs no files outside it. Invoke `$postage` in a new Codex task. Repository installation is separate from OpenAI's public directory review. See [OpenAI's plugin documentation](https://developers.openai.com/plugins/build/plugins).
 
 ## Claude Code
 
@@ -172,6 +172,25 @@ Use the connection your particular runtime actually exposes:
 This repository does not supply a native Muse or Grok installer. A chat-only surface cannot mail a PDF through these instructions alone. If the host cannot keep a key out of prompts or cannot send authenticated requests, use another supported connection.
 
 ## ChatGPT
+
+### Native plugin
+
+The portable package at `plugins/agentpostage` contains root `plugin.json`, `mcp.json`, the `postage` skill and its icon. It connects to `https://agentpostage.com/mcp` through OAuth rather than asking the user to paste an API key. The user must still verify their email, accept the AgentPostage policies and fund the account on AgentPostage before mailing.
+
+Use the user's actual PDF attachment with `send_letter`'s `pdf` argument. ChatGPT provides `download_url` and `file_id`, and may provide `mime_type` and `file_name`. Preserve the same idempotency key and mailing inputs on retries; a refreshed attachment URL may refer to the same PDF. Never invent a file link or turn an attachment into guessed base64.
+
+The package is suitable for upload to the [OpenAI plugin portal](https://platform.openai.com/plugins). Public availability requires OpenAI review and a subsequent publish action; do not infer listing status from this repository. Review credentials and the walkthrough recording are supplied privately in the portal after testing with a dedicated sample account.
+
+To create the submission ZIP from the repository root:
+
+```sh
+cd plugins/agentpostage
+zip -r /tmp/agentpostage-plugin.zip plugin.json mcp.json skills assets LICENSE
+```
+
+This includes the shared instructions and CLI without repository history or credentials. See [OpenAI's submission requirements](https://developers.openai.com/plugins/deploy/submission).
+
+### Private GPT Actions
 
 Use a private custom GPT with Actions. You need a plan and workspace that permit creating GPTs with Actions. This API-key integration does not use ChatGPT's native MCP connection flow.
 

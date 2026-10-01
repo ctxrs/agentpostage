@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "agentpostage": {
+      "type": "http",
+      "url": "https://agentpostage.com/mcp"
+    }
+  }
+}

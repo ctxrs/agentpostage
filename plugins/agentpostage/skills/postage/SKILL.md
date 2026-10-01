@@ -33,11 +33,13 @@ If an installer provided only this Markdown file, use MCP or HTTP, or download t
 
 The CLI sends authenticated requests to `https://agentpostage.com`. Leave `AGENTPOSTAGE_BASE_URL` unset during normal use. Do not redirect the key or documents to another origin without the owner's explicit authorization.
 
-The human owner creates a verified account, accepts the policies and creates a key at https://agentpostage.com/connect/. Funding happens at https://agentpostage.com/billing/. The agent needs `AGENTPOSTAGE_API_KEY` in its tool environment, supplied through the runtime's secret store. Never ask for the key in chat, print it, or obtain owner cookies or card details. If absent, ask the human to configure it.
+In the ChatGPT or Codex plugin, connect the owner's AgentPostage account using the host's sign-in flow. OAuth provides access to that account's mailing tools without copying an API key. The owner verifies their email and accepts the service policies at https://agentpostage.com/connect/. Funding happens at https://agentpostage.com/billing/. Account linking does not fund the account or accept policies.
+
+For the CLI, HTTP API or a client configured for API keys, the owner creates a key at https://agentpostage.com/connect/ and supplies `AGENTPOSTAGE_API_KEY` through the runtime's secret store. Never ask for a key or password in chat, print credentials, or obtain owner cookies or card details. If authentication is absent, return the appropriate sign-in or setup step.
 
 Keys can spend the account balance, with no per-key allowance. They cannot manage keys or directly charge a card. Sending can trigger automatic recharge if the owner enabled it. When funding is needed, return the billing link and wait for the confirmed balance.
 
-For current prices, endpoint fields, print options and limits, read https://agentpostage.com/llms.txt or https://agentpostage.com/docs/. MCP is at `https://agentpostage.com/mcp`, using Streamable HTTP and Bearer API-key authentication, not OAuth.
+For current prices, endpoint fields, print options and limits, read https://agentpostage.com/llms.txt or https://agentpostage.com/docs/. MCP is at `https://agentpostage.com/mcp`, using Streamable HTTP. Native plugins use OAuth account linking; existing API-key clients can still use Bearer authentication.
 
 ## Mailing inputs and optional pricing
 
@@ -62,7 +64,7 @@ Source PDFs must be at most 10 MiB. First-Class/HSE permit 500 document pages, e
 
 Choose and preserve a unique idempotency key before submitting. Keys are 8–128 ASCII letters, digits, dots, colons, underscores or hyphens. Keep it with the intended mailing inputs.
 
-MCP `send_letter` takes `idempotency_key`, `pdf_base64` of actual PDF bytes, `sender`, `recipient` and optional `service`, `color`, `duplex`, `paper`, `return_envelope`. Never invent base64 or put an external PDF URL in its place. For a local PDF, the CLI reads and encodes the file directly.
+MCP `send_letter` takes `idempotency_key`, `sender`, `recipient`, optional `service`, `color`, `duplex`, `paper`, `return_envelope`, and exactly one PDF source. In ChatGPT use the actual attachment as `pdf`: the host supplies `download_url` and `file_id`, with optional `mime_type` and `file_name`. Do not invent file identifiers or download links. Other clients can supply `pdf_base64` of actual PDF bytes. For a local PDF, the CLI reads and encodes the file directly.
 
 Save the user's addresses as `sender.json` and `recipient.json`, then send within the existing delegation:
 

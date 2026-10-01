@@ -1,0 +1,47 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agentpostage",
+  "version": "0.4.0",
+  "description": "Mail PDFs to US addresses, check prices and follow letter status with AgentPostage.",
+  "author": {
+    "name": "CTX Engineering Inc.",
+    "email": "support@agentpostage.com",
+    "url": "https://agentpostage.com"
+  },
+  "homepage": "https://agentpostage.com",
+  "repository": "https://github.com/ctxrs/agentpostage",
+  "license": "MIT",
+  "keywords": ["mail", "postage", "pdf", "certified-mail"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "AgentPostage",
+        "shortDescription": "Mail PDFs to US addresses",
+        "longDescription": "Send an attached PDF as physical US mail using your return address and recipient address. Check prices, account balance, letters and transactions; cancel eligible letters and follow mailing or Certified Mail tracking status. Sign in to AgentPostage, accept its service policies and add prepaid funds before mailing. Sending spends account funds and can trigger owner-enabled automatic recharge. AgentPostage supports PDFs and US addresses; it does not draft documents, guarantee legal outcomes or promise delivery dates.",
+        "developerName": "CTX Engineering Inc.",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://agentpostage.com",
+        "supportURL": "https://agentpostage.com/support/",
+        "privacyPolicyURL": "https://agentpostage.com/privacy/",
+        "termsOfServiceURL": "https://agentpostage.com/terms/",
+        "defaultPrompt": [
+          "Check the price to mail my PDF with AgentPostage.",
+          "Mail my PDF using the addresses I provided.",
+          "Check the status of my AgentPostage letters."
+        ],
+        "brandColor": "#B83F2E",
+        "logo": "./assets/icon.svg",
+        "composerIcon": "./assets/icon.svg"
+      },
+      "review": {
+        "commerce": true,
+        "commerce_description": "AgentPostage provides paid printing and physical US mailing from a prepaid account. Funding and payment-method management take place on AgentPostage and Stripe in the account owner's browser. MCP tools cannot enter card details or authorize account funding, but sending mail spends prepaid funds and may trigger automatic recharge previously enabled by the owner."
+      },
+      "publication": {
+        "countries": ["US"],
+        "release_notes": "Adds a portable ChatGPT and Codex plugin with OAuth account linking and native PDF attachments, while retaining API-key and standalone CLI connections."
+      }
+    }
+  }
+}
