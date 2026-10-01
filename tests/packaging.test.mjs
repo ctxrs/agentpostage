@@ -41,3 +41,27 @@ test('Gemini loads the same instructions and uses a secret-backed HTTPS MCP conn
   assert.equal(server.command, undefined)
   assert.equal(server.trust, undefined)
 })
+
+test('portable plugin discovers its skill, remote MCP and square bundled icon without embedded credentials', async () => {
+  const pluginRoot = resolve(root, 'plugins/agentpostage')
+  const plugin = await json(resolve(pluginRoot, 'plugin.json'))
+  assert.equal(plugin.$schema, 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json')
+  assert.equal(plugin.name, 'agentpostage')
+  assert.deepEqual(await readdir(resolve(pluginRoot, 'skills')), ['postage'])
+  const mcp = await json(resolve(pluginRoot, 'mcp.json'))
+  assert.deepEqual(mcp.mcpServers, { agentpostage: { type: 'streamable-http', url: 'https://agentpostage.com/mcp' } })
+  const ui = plugin.extensions['com.openai'].interface
+  for (const field of ['websiteURL', 'supportURL', 'privacyPolicyURL', 'termsOfServiceURL']) {
+    const url = new URL(ui[field])
+    assert.equal(url.protocol, 'https:')
+    assert.equal(url.username + url.password, '')
+  }
+  for (const field of ['logo', 'composerIcon']) {
+    const icon = await readFile(resolve(pluginRoot, ui[field]), 'utf8')
+    const dimensions = /viewBox="0 0 (\d+) (\d+)"/.exec(icon)
+    assert.ok(dimensions)
+    assert.equal(dimensions[1], dimensions[2])
+    assert.ok(Number(dimensions[1]) >= 48)
+  }
+  assert.ok((await stat(resolve(pluginRoot, 'LICENSE'))).isFile())
+})

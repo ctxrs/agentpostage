@@ -4,13 +4,13 @@ Your agent can write the letter. Now it can mail it.
 
 [AgentPostage](https://agentpostage.com/docs/) turns a PDF, a US return address and a US recipient address into physical mail. Send bank disputes, gym cancellations, credit bureau requests, notices and completed forms from your agent. Printing, an envelope, an address coversheet and US postage are included.
 
-This repository contains a portable mailing skill, Claude Code, Codex and Cursor plugins, a Gemini CLI extension, and a standalone Node.js CLI. Connect through MCP or the HTTP API, or use a private GPT Action in ChatGPT.
+This repository contains a portable ChatGPT and Codex plugin, a mailing skill, Claude Code and Cursor packages, a Gemini CLI extension, and a standalone Node.js CLI. Connect through OAuth MCP, an API-key client or a private GPT Action in ChatGPT.
 
 ## Start here
 
-1. Create and verify your account at [Connect](https://agentpostage.com/connect/), accept the service policies and create a named API key.
+1. Create and verify your account at [Connect](https://agentpostage.com/connect/) and accept the service policies.
 2. Add prepaid funds at [Billing](https://agentpostage.com/billing/). The minimum payment is $10. There is no subscription.
-3. Put the key in your agent's secret store as `AGENTPOSTAGE_API_KEY`, then follow your [agent setup](docs/integrations.md). Never paste it into a conversation.
+3. Follow your [agent setup](docs/integrations.md). Native plugins link your account through sign-in. For the CLI or an API-key connection, create a named key and put it in your agent's secret store as `AGENTPOSTAGE_API_KEY`. Never paste it into a conversation.
 
 Install the skill for a supported agent with the [skills CLI](https://skills.sh/docs):
 
@@ -42,14 +42,16 @@ Your agent acts within the authority and limits you have already delegated. Agen
 | Agent or runtime | Connection |
 | --- | --- |
 | OpenClaw, Hermes Agent | Install the skill with shell access, or use their remote MCP configuration |
-| Codex | Install the repo-local skill plugin, or configure HTTP MCP with a Bearer environment variable |
+| Codex | Portable plugin with OAuth MCP, or HTTP MCP with a Bearer environment variable |
 | Claude Code | Install the skill plugin, or connect through remote HTTP MCP |
 | Cursor | Import the repository as a plugin, install the portable skill, or connect through remote HTTP MCP |
 | Gemini CLI | Install the extension for remote MCP and the shared mailing instructions |
-| ChatGPT | Private custom GPT with Actions and API-key authentication |
+| ChatGPT | Portable plugin with OAuth and PDF attachments; private GPT Actions remain available |
 | Muse, Grok bots, other tool-capable runtimes | CLI, HTTP or remote MCP where the runtime exposes those capabilities |
 
 [Setup instructions](docs/integrations.md) explain prerequisites and limits. A model name alone does not provide tools or permission to send mail.
+
+The portable package is in [`plugins/agentpostage`](plugins/agentpostage). A package in this repository does not establish approval or publication in OpenAI's public directory.
 
 ## What it costs
 
